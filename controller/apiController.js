@@ -46,7 +46,7 @@ exports.registervendor = async (req, res) => {
                 else {
                     let payload = { subject: registeredUser._id }
                     let token = jwt.sign(payload, 'secretkey')
-                    res.status(200).json({ token: token })
+                    res.status(200).json({ token: token,success:true })
                 }
             })
         }
