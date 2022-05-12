@@ -3,16 +3,7 @@ const Vendor=require("../models/vendor");
 const mongoose = require ('mongoose');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-// exports.creatproduct = async(req,res)=>{
-//     const product = req.body;
-//     const newproduct = new Proudct(product);
-//     try{
-//         await newproduct.save();
-//         res.status(201).json(newproduct);
-//     }catch(error){
-//         res.status(400).json({message:error.message});
-//     }
-// }
+
 
 exports.getvendorById = async(req,res)=>{
     try{
@@ -34,25 +25,16 @@ exports.getproductapproved= async(req,res)=>{
             res.json({ msg: qz });
         }
     })
+}
 
- exports.approvedupdate = async(req,res)=>{
-        var productToUpdate = req.params.id;
-        var approve=req.body;
-        Proudct.update({ _id:mongoose.Types.ObjectId(productToUpdate)}, approve,  (err, result)=> {
-            res.send(
-                (err === null) ? {msg: 'sucess',approve } : {msg: err}
-            );
-        });
-    }
-    
-    // try{
-    //     console.log("vendorid",req.body);
-    //     const product  = await Proudct.find(r);
-    //     console.log("vendor",req.body);
-    //     res.status(200).json(product);
-    // }catch( error ){
-    //     res.status(404).json({ message: error.message })
-    // }
+exports.approvedupdate = async(req,res)=>{
+    var productToUpdate = req.params.id;
+    var approve=req.body;
+    Proudct.update({ _id:mongoose.Types.ObjectId(productToUpdate)}, approve,  (err, result)=> {
+        res.send(
+            (err === null) ? {msg: 'sucess',approve } : {msg: err}
+        );
+    });
 }
 
 exports.updatevendor = async(req,res)=>{

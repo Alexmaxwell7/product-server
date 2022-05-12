@@ -24,6 +24,7 @@ exports.registervendor = async (req, res) => {
         email: req.body.email,
         role: req.body.role,
         district:req.body.district,
+        vendorId:req.body.vendorId,
         password: await bcrypt.hash(req.body.password,12)
         // password:req.body.password
     });
@@ -53,7 +54,9 @@ exports.registervendor = async (req, res) => {
     })
 }
 exports.vendorlogIn = (req, res) => {
+    console.log(req.body);
     Vendor.findOne({ email: req.body.email }, (err, user) => {
+        console.log("user",user);
         if (err) {
             console.log(err)
             res.json({ msg: "Somthing went wrong" });
@@ -68,7 +71,7 @@ exports.vendorlogIn = (req, res) => {
                         console.log("login sucesssss");
                         let payload = { subject: user._id,email:user.email }
                         let token = jwt.sign(payload, 'secretkey')
-                        res.status(200).json({ token: token, role: user.role })
+                        res.status(200).json({ token: token, role: user.role,email: user.email,name:user.name,district:user.district,vendorId:user.vendorId })
                     }
                     else {
                         console.log("incoreect passss");
@@ -120,13 +123,6 @@ exports.AdminlogIn = async(req, res) => {
 }
 
 
-
-
-// exports.testDone = (req, res, next) => {
-//     console.log("success submit");
-//     console.log(req.body);
-//     res.json({ msg: "yours mark" });
-// }
 
 exports.verifyToken = (req, res, next) => {
     if (!req.headers.authorization) {

@@ -12,7 +12,5 @@ router.get('/getallvendors',apiController.verifyToken,apiController.getallvendor
 router.get('/check', apiController.verifyToken, apiController.getCheck)
 
 
-// router.post('/testdone', apiController.testDone)
-
 
 module.exports = router

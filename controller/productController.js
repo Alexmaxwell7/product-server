@@ -6,7 +6,7 @@ exports.creatproduct = async(req,res)=>{
     const newproduct = new Proudct(product);
     try{
         await newproduct.save();
-        res.status(201).json(newproduct);
+        res.status(201).json({msg: 'success',newproduct});
     }catch(error){
         res.status(400).json({message:error.message});
     }

@@ -10,7 +10,8 @@ router.get('/getproduct',ProductController.getproduct);
 router.put('/updateproduct/:id',ProductController.updateproduct);
 router.delete('/deleteproduct/:id',ProductController.deleteproduct);
 
-
+//lookupview
+router.get('/getlookup',VendorProductController.getlookup);
 //vendor product view
 router.get('/vendorpostedproduct/:id',VendorProductController.getproductbyId);
 // router.post('/testdone', apiController.testDone)
